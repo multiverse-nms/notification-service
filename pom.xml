@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.nms</groupId>
+	<artifactId>nms-notification-service</artifactId>
+	<name>notification-service</name>
+	<version>1.0.0</version>
+		
+	<properties>
+		<vertx.version>3.9.0</vertx.version>
+    	<slf4jVersion>1.6.1</slf4jVersion>
+  	</properties>
+
+	<dependencies>
+		<dependency>
+   			<groupId>org.slf4j</groupId>
+   			<artifactId>slf4j-simple</artifactId>
+   			<version>1.7.5</version>
+   			<scope>compile</scope>
+		</dependency>
+		<dependency>
+  			<groupId>com.github.oshi</groupId>
+  			<artifactId>oshi-core</artifactId>
+  			<version>5.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+		<!-- AMQP -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-amqp-client</artifactId>
+			<version>3.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-amqp-bridge</artifactId>
+			<version>3.9.0</version>
+		</dependency>
+		<!-- Router -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-web</artifactId>
+			<version>3.9.0</version>
+		</dependency>
+				
+		<!-- Add hazelcast deps if you want it clusterable -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-hazelcast</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.8</version>
+		</dependency>
+
+		<!--jnc dependency-->
+		<!-- <dependency>
+			<groupId>org.onosproject</groupId>
+			<artifactId>jnc</artifactId>
+			<version>1.0</version>
+		</dependency> -->
+	</dependencies>
+
+
+	<build>
+		<plugins>	
+			<plugin> 
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-shade-plugin</artifactId> 
+				<version>3.0.0</version> 
+				<executions> 
+					<execution> 
+						<phase>package</phase> 
+						<goals> 
+							<goal>shade</goal> 
+						</goals> 
+						<configuration> 
+							<transformers> 
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"> 
+									<manifestEntries> 
+										<Main-Class>io.nms.notification.main.Main</Main-Class>  
+									</manifestEntries> 
+								</transformer> 
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"> 
+									<resource>META-INF/services/io.vertx.core.spi.VerticleFactory</resource> 
+								</transformer> 
+							</transformers> 
+							<artifactSet> 
+							</artifactSet> 
+							<outputFile>${project.build.directory}/${project.artifactId}-fat.jar</outputFile> 
+						</configuration> 
+					</execution> 
+				</executions> 
+			</plugin>
+				
+				<!-- We specify the Maven compiler plugin as we need to set it to Java 
+					1.8  -->
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.7.0</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+			
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.0.0-M3</version>
+				</plugin>
+		</plugins>	
+	</build>
+	
+
+	<profiles>
+		<profile>
+			<id>staging</id>
+			<repositories>
+				<repository>
+					<id>staging</id>
+					<url>https://oss.sonatype.org/content/repositories/iovertx-3831/</url>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+
+</project>

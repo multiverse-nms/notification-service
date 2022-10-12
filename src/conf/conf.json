@@ -1,0 +1,21 @@
+{
+  "agent" : 
+  {
+    "name": "agent-0"
+  },
+  "amqp": 
+  {
+    "host" : "localhost",
+    "port" : 5672
+  },
+  "modules":
+  [
+    {
+      "name":"syslogEvents",
+      "capabilities":[
+        "io.nms.notification.syslogevents.RealtimeEvents"
+      ],
+      "config": {}
+    }
+  ]
+}

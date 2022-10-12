@@ -8,10 +8,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import io.nms.notification.constants.Errors;
 import io.nms.notification.message.Capability;
 import io.nms.notification.message.Interrupt;

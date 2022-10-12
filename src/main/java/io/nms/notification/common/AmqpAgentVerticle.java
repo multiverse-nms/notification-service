@@ -2,14 +2,12 @@ package io.nms.notification.common;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import io.nms.notification.syslog.SysLogListener;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
 import io.vertx.core.datagram.DatagramSocket;
 import io.vertx.core.datagram.DatagramSocketOptions;
-import java.io.IOException;
-import java.util.Date;
+
 
 
 /*

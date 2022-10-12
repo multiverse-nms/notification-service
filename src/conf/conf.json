@@ -1,7 +1,7 @@
 {
   "agent" : 
   {
-    "name": "agent-0"
+    "name": "notification-service"
   },
   "amqp": 
   {
@@ -11,9 +11,9 @@
   "modules":
   [
     {
-      "name":"syslogEvents",
+      "name":"oxcEvents",
       "capabilities":[
-        "io.nms.notification.syslogevents.RealtimeEvents"
+        "io.nms.notification.oxcEvents.RealtimeEvents"
       ],
       "config": {}
     }

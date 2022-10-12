@@ -1,4 +1,4 @@
-package io.nms.notification.syslogevents;
+package io.nms.notification.oxcEvents;
 
 // import com.tailf.jnc.Device;
 // import com.tailf.jnc.DeviceUser;
@@ -11,17 +11,13 @@ package io.nms.notification.syslogevents;
 // import java.net.SocketTimeoutException;
 // import java.util.Scanner;
 
-import java.io.IOException;
 import java.util.Date;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.sql.Timestamp;
 import io.nms.notification.taskmanager.AbstractAgentTask;
 import io.nms.notification.taskmanager.AgentTaskListener;
-import io.nms.notification.common.AmqpAgentVerticle;
 import io.nms.notification.constants.Errors;
 import io.nms.notification.message.Message;
 import io.nms.notification.syslog.SysLogListener;
@@ -34,13 +30,13 @@ public class RealtimeEvents extends AbstractAgentTask implements SysLogListener{
 	public RealtimeEvents(Message spec, JsonObject context) {
 		super(spec, context); 
 		verb = "collect";
-		name = "oxc";
-		label = "Probe collecting OXC events";		
+		name = "oxc-events";
+		label = "Collect OXC events";		
 		resultColumns = Arrays.asList("logEntry");
 		role = "admin"; 
 		taskPeriodMs = 0;
 	}
-	// implementation of Specification exec
+	
 	protected short executeSpec(AgentTaskListener t) {
 		syslogServer = t;
 		LOG.info("Real Time Events...");

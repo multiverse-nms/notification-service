@@ -2,7 +2,6 @@ package io.nms.notification.common;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import io.nms.notification.message.Capability;
 import io.nms.notification.message.Message;
 import io.vertx.amqp.AmqpClient;

@@ -1,17 +1,14 @@
 package io.nms.notification.taskmanager;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import io.nms.notification.constants.Errors;
 import io.nms.notification.message.Capability;
 import io.nms.notification.message.Message;
